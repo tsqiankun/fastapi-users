@@ -24,7 +24,8 @@ def generate_jwt(
     if lifetime_seconds:
         expire = datetime.now(timezone.utc) + timedelta(seconds=lifetime_seconds)
         payload["exp"] = expire
-    return jwt.encode(payload, _get_secret_value(secret), algorithm=algorithm)
+    secret_value = _get_secret_value(secret)
+    return jwt.encode(payload, secret_value, algorithm=algorithm)
 
 
 def decode_jwt(
