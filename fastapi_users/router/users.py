@@ -30,7 +30,7 @@ def get_users_router(
         try:
             parsed_id = user_manager.parse_id(id)
             return await user_manager.get(parsed_id)
-        except (exceptions.UserNotExists, exceptions.InvalidID) as e:
+        except exceptions.UserNotExists as e:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND) from e
 
     @router.get(
