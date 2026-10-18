@@ -650,7 +650,6 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         except exceptions.UserNotExists:
             # Run the hasher to mitigate timing attack
             # Inspired from Django: https://code.djangoproject.com/ticket/20760
-            self.password_helper.hash(credentials.password)
             return None
 
         verified, updated_password_hash = self.password_helper.verify_and_update(
