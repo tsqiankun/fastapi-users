@@ -92,7 +92,7 @@ def get_users_router(
     ):
         try:
             user = await user_manager.update(
-                user_update, user, safe=True, request=request
+                user_update, user, safe=False, request=request
             )
             return user_schema.model_validate(user)
         except exceptions.InvalidPasswordException as e:
